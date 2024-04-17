@@ -26,8 +26,6 @@ pic6_path = os.path.join(img_folder_path, "6.jpg")
 pic7_path = os.path.join(img_folder_path, "7.jpg")
 pic8_path = os.path.join(img_folder_path, "8.jpg")
 
-print(pic1_path)
-
 sound_file = mp3_file_path
 sound = pygame.mixer.Sound(sound_file)
 
