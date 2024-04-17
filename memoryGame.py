@@ -143,14 +143,12 @@ for i in range(16):
 
 
 def on_label_click(event, i, imageIndex, image, label):
-
     global firstRotatationChanged
     global counter
     global lastclicked_item
     global lastImageIndex
     global dont
     dont = True
-
     if counter == 0:
         lastclicked_item = i
         lastImageIndex = imageIndex
@@ -287,7 +285,7 @@ for i in range(16):
     frame = Frame(window, width=100, height=100,
                   highlightbackground='#123456', highlightthickness=3)
     frame.pack()
-    frame.place(relx=windowsX, rely=windowsY) 
+    frame.place(relx=windowsX, rely=windowsY)
     frames.append(frame)
 
 for i in range(16):
