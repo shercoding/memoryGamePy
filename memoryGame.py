@@ -6,6 +6,7 @@ import math
 import pygame
 import random
 import os
+import time
 
 lastclicked = False
 lastclicked_item = 20
@@ -33,7 +34,6 @@ window = Tk()
 window.geometry("470x600")
 window.title('Memory Game')
 window.resizable(False, False)
-
 # read image
 
 
@@ -121,14 +121,14 @@ def rotate_image(num, counter, clockwise, image, label, i):
     label.configure(image=imgTk)
     label.image = imgTk
 
-    if (counter == 95 or counter == -4):
+    if (counter == 95 or counter == -4): 
         return
 
     if clockwise:
-        window.after(2, lambda: rotate_image(
+        window.after(3, lambda: rotate_image(
             num, counter, clockwise, image, label, i))
     else:
-        window.after(2, lambda: rotate_image(
+        window.after(3, lambda: rotate_image(
             num, counter, clockwise, image, label, i))
 
 
@@ -145,8 +145,8 @@ def on_label_click(event, i, imageIndex, image, label):
     global counter
     global lastclicked_item
     global lastImageIndex
-    global dont
-    dont = True
+    global cardsAreSmilar
+    cardsAreSmilar = True
     if counter == 0:
         lastclicked_item = i
         lastImageIndex = imageIndex
@@ -159,19 +159,20 @@ def on_label_click(event, i, imageIndex, image, label):
                 labels[lastclicked_item],
                 lastclicked_item)
             firstRotatationChanged[lastclicked_item] = False
-
             rotate_image(
-                91, 0, True,
+                91,
+                0,
+                True,
                 image,
                 label,
                 i)
-            dont = False
-
+            print("First: ", lastclicked_item, " , Second one", i)
+            cardsAreSmilar = False
             firstRotatationChanged[i] = False
         lastclicked_item = 20
         counter = 0
 
-    if (dont):
+    if (cardsAreSmilar):
         if (firstRotatationChanged[i]):
             rotate_image(91, 0, True, image, labels[i], i)
             firstRotatationChanged[i] = False
